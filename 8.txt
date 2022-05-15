@@ -1,0 +1,71 @@
+public class Sample
+{   
+    public Double val1 {get;set;}
+    public Double val2 {get;set;}
+    public Double result {get;set;}
+    public String func {get;set;}
+   
+    public Sample()
+    {
+    }
+   
+    public void find()
+    {
+        if(func == 'add')
+        {
+            result = val1 + val2;
+        }
+        else if(func == 'mod')
+        {
+             Integer temp =  math.mod(Integer.valueOf(val1) , Integer.valueOf(val2));
+             result = Double.valueOf(temp);
+        }
+        else if(func == 'pwr')
+        {
+            result = math.pow(val1, val2);
+        }
+    }
+
+
+
+
+    <apex:page controller="Sample">
+
+<apex:form >
+   
+    <apex:pageBlock >
+        <apex:pageBlockSection >
+            <apex:pageBlockSectionItem >
+                <apex:outputLabel value="Value 1"/>
+            </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem >
+                <apex:inputText value="{!val1}"/>
+            </apex:pageBlockSectionItem>                          
+            <apex:pageBlockSectionItem >
+                <apex:outputLabel value="Value 2"/>
+            </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem >
+                <apex:inputText value="{!val2}"/>
+            </apex:pageBlockSectionItem>                         
+            <apex:pageBlockSectionItem >
+                <apex:selectRadio value="{!func}" layout="pageDirection">
+                    <apex:selectOption itemValue="add" itemLabel="Add"/>
+                </apex:selectRadio>
+            </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem >               
+            </apex:pageBlockSectionItem>       
+            <apex:pageBlockSectionItem >
+                <apex:outputLabel value="Result"/>
+            </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem >
+                <apex:inputText value="{!result}" id="res"/><apex:actionStatus id="sts" startText="Finding..."/>
+            </apex:pageBlockSectionItem>                                      
+        </apex:pageBlockSection>   
+        <apex:pageBlockButtons >
+            <apex:commandButton value="Find" action="{!find}" reRender="res"  status="sts"/>
+        </apex:pageBlockButtons>
+    </apex:pageBlock>
+   
+</apex:form>
+
+</apex:page>
